@@ -37,13 +37,18 @@ class BitcoinBacktester:
         self.portfolio_history = []
         self.positions = []  # Current open positions
         
-    def load_data(self, data: pd.DataFrame = None, days: int = 365) -> pd.DataFrame:
+    def load_data(self, data: pd.DataFrame = None, days: int = 365, 
+                  coin: str = "BTC", interval: str = "1d", 
+                  use_real_data: bool = True) -> pd.DataFrame:
         """
-        Load Bitcoin price data. If no data provided, generates synthetic data.
+        Load Bitcoin price data. Automatically fetches real Hyperliquid data by default.
         
         Args:
             data: DataFrame with columns ['timestamp', 'open', 'high', 'low', 'close', 'volume']
-            days: Number of days to generate if creating synthetic data
+            days: Number of days to fetch/generate
+            coin: Trading pair for Hyperliquid (default: "BTC")
+            interval: Candle interval (default: "1d" for daily)
+            use_real_data: If True, fetch real Hyperliquid data (default: True)
             
         Returns:
             DataFrame with OHLCV data
@@ -51,27 +56,57 @@ class BitcoinBacktester:
         if data is not None:
             self.data = data.copy()
             self.data['timestamp'] = pd.to_datetime(self.data['timestamp'])
+        elif use_real_data:
+            # Try to fetch real Hyperliquid data
+            try:
+                from hyperliquid_data_fetcher import HyperliquidDataFetcher
+                
+                print(f"📡 Fetching real {coin} data from Hyperliquid...")
+                fetcher = HyperliquidDataFetcher()
+                self.data = fetcher.fetch_bitcoin_for_backtest(
+                    interval=interval, 
+                    days_back=days
+                )
+                
+                if self.data.empty:
+                    print("⚠️  Failed to fetch Hyperliquid data, using synthetic data instead...")
+                    self.data = self._generate_synthetic_data(days)
+                else:
+                    print(f"✅ Using real Hyperliquid data ({len(self.data)} candles)")
+                    
+            except ImportError:
+                print("⚠️  hyperliquid_data_fetcher not found, using synthetic data...")
+                self.data = self._generate_synthetic_data(days)
+            except Exception as e:
+                print(f"⚠️  Error fetching Hyperliquid data: {e}")
+                print("    Using synthetic data instead...")
+                self.data = self._generate_synthetic_data(days)
         else:
-            # Generate synthetic Bitcoin price data
-            dates = pd.date_range(end=datetime.now(), periods=days, freq='D')
-            
-            # Start from a realistic Bitcoin price
-            base_price = 40000
-            returns = np.random.normal(0.001, 0.03, days)  # 0.1% daily return, 3% volatility
-            prices = base_price * np.exp(np.cumsum(returns))
-            
-            # Create OHLCV data
-            self.data = pd.DataFrame({
-                'timestamp': dates,
-                'open': prices * (1 + np.random.uniform(-0.01, 0.01, days)),
-                'high': prices * (1 + np.random.uniform(0.005, 0.02, days)),
-                'low': prices * (1 + np.random.uniform(-0.02, -0.005, days)),
-                'close': prices,
-                'volume': np.random.uniform(1000, 10000, days)
-            })
+            # Generate synthetic data if explicitly requested
+            print("🎲 Using synthetic data (for testing)...")
+            self.data = self._generate_synthetic_data(days)
             
         self.data = self.data.sort_values('timestamp').reset_index(drop=True)
         return self.data
+    
+    def _generate_synthetic_data(self, days: int) -> pd.DataFrame:
+        """Generate synthetic Bitcoin price data for testing."""
+        dates = pd.date_range(end=datetime.now(), periods=days, freq='D')
+        
+        # Start from a realistic Bitcoin price
+        base_price = 40000
+        returns = np.random.normal(0.001, 0.03, days)  # 0.1% daily return, 3% volatility
+        prices = base_price * np.exp(np.cumsum(returns))
+        
+        # Create OHLCV data
+        return pd.DataFrame({
+            'timestamp': dates,
+            'open': prices * (1 + np.random.uniform(-0.01, 0.01, days)),
+            'high': prices * (1 + np.random.uniform(0.005, 0.02, days)),
+            'low': prices * (1 + np.random.uniform(-0.02, -0.005, days)),
+            'close': prices,
+            'volume': np.random.uniform(1000, 10000, days)
+        })
     
     def calculate_indicators(self):
         """Calculate technical indicators for the loaded data."""
@@ -790,9 +825,9 @@ def run_example():
     # Initialize backtester
     bt = BitcoinBacktester(initial_capital=10000, commission=0.001)
     
-    # Load data (synthetic for demo)
+    # Load data (automatically tries real Hyperliquid data first)
     print("📊 Loading Bitcoin price data...")
-    bt.load_data(days=365)
+    bt.load_data(days=365, interval="1h", use_real_data=True)
     
     # Calculate indicators
     print("📈 Calculating technical indicators...")
