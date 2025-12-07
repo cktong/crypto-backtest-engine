@@ -1,0 +1,15 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Python
+*.py linguist-language=Python
+
+# Jupyter Notebooks
+*.ipynb linguist-language=Jupyter Notebook
+
+# Documentation
+*.md linguist-documentation
+
+# Exclude from language stats
+*.json linguist-vendored
+*.csv linguist-vendored
