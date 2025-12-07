@@ -97,7 +97,7 @@ Completely rewrote README.md:
 - Created feature branch: `feature/multi-asset-support`
 - Committed all changes with detailed message
 - Pushed to GitHub
-- **Created Pull Request**: https://github.com/cktong/trading/pull/1
+- **Created Pull Request**: https://github.com/cktong/crypto-backtest-engine/pull/1
 
 ---
 
@@ -244,7 +244,7 @@ git fetch origin
 ## 🎯 Next Steps (Recommendations)
 
 ### Immediate (Day 1)
-1. ✅ Review and merge PR: https://github.com/cktong/trading/pull/1
+1. ✅ Review and merge PR: https://github.com/cktong/crypto-backtest-engine/pull/1
 2. ✅ Test with SPDR: `python3 examples/quick_start.py`
 3. ✅ Test with GLAM: Same script, automatic!
 
@@ -305,7 +305,7 @@ git fetch origin
 
 ### Getting Help
 - **GitHub Issues**: Report bugs or request features
-- **Pull Request**: https://github.com/cktong/trading/pull/1
+- **Pull Request**: https://github.com/cktong/crypto-backtest-engine/pull/1
 - **Code Examples**: `examples/` directory
 
 ---
@@ -336,7 +336,7 @@ The refactoring is **complete and production-ready**! You now have a universal c
 
 ---
 
-**Pull Request**: https://github.com/cktong/trading/pull/1
+**Pull Request**: https://github.com/cktong/crypto-backtest-engine/pull/1
 **Status**: Ready for review and merge
 **Impact**: Universal multi-asset support
 **Breaking Changes**: None (backward compatible)

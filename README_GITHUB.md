@@ -22,7 +22,7 @@ A comprehensive Bitcoin backtesting framework with **Hyperliquid API integration
 
 ```bash
 # Clone repository
-git clone https://github.com/cktong/trading.git
+git clone https://github.com/cktong/crypto-backtest-engine.git
 cd trading
 
 # Install dependencies
@@ -241,14 +241,14 @@ MIT License - See LICENSE file for details
 
 ## 🔗 Links
 
-- **Repository**: https://github.com/cktong/trading
+- **Repository**: https://github.com/cktong/crypto-backtest-engine
 - **Hyperliquid**: https://hyperliquid.xyz
 - **Documentation**: https://hyperliquid.gitbook.io/hyperliquid-docs/
 
 ## 📧 Contact
 
 - **GitHub**: [@cktong](https://github.com/cktong)
-- **Issues**: [Report bugs](https://github.com/cktong/trading/issues)
+- **Issues**: [Report bugs](https://github.com/cktong/crypto-backtest-engine/issues)
 
 ## 🎉 Getting Started
 

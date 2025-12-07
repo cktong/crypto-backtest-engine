@@ -4,7 +4,7 @@
 
 ### Current Situation
 - **Current Name**: `trading`
-- **Current URL**: https://github.com/cktong/trading
+- **Current URL**: https://github.com/cktong/crypto-backtest-engine
 - **Issue**: Generic name, poor discoverability
 
 ### Recommended Change
@@ -77,7 +77,7 @@ When deployed to various platforms:
 ### Option 1: Rename Existing Repository (Recommended)
 
 #### Step 1: Rename on GitHub
-1. Go to https://github.com/cktong/trading/settings
+1. Go to https://github.com/cktong/crypto-backtest-engine/settings
 2. Scroll to "Repository name"
 3. Change from `trading` to `crypto-backtest-engine`
 4. Click "Rename"
@@ -101,8 +101,8 @@ git fetch origin
 ```bash
 # Update all URLs in documentation
 cd /home/user/webapp
-find . -name "*.md" -type f -exec sed -i 's|cktong/trading|cktong/crypto-backtest-engine|g' {} +
-find . -name "*.py" -type f -exec sed -i 's|cktong/trading|cktong/crypto-backtest-engine|g' {} +
+find . -name "*.md" -type f -exec sed -i 's|cktong/crypto-backtest-engine|cktong/crypto-backtest-engine|g' {} +
+find . -name "*.py" -type f -exec sed -i 's|cktong/crypto-backtest-engine|cktong/crypto-backtest-engine|g' {} +
 
 # Commit changes
 git add .
@@ -143,7 +143,7 @@ git remote rename new-origin origin
 ```
 
 #### Step 3: Archive Old Repository
-1. Go to https://github.com/cktong/trading/settings
+1. Go to https://github.com/cktong/crypto-backtest-engine/settings
 2. Scroll to "Danger Zone"
 3. Click "Archive this repository"
 4. Add note: "Moved to crypto-backtest-engine"
@@ -162,7 +162,7 @@ url="https://github.com/cktong/crypto-backtest-engine",
 ### Update `server_setup.sh`
 ```bash
 # Old
-git clone https://github.com/cktong/trading.git
+git clone https://github.com/cktong/crypto-backtest-engine.git
 
 # New
 git clone https://github.com/cktong/crypto-backtest-engine.git
@@ -171,7 +171,7 @@ git clone https://github.com/cktong/crypto-backtest-engine.git
 ### Update `README.md`
 ```bash
 # Old
-git clone https://github.com/cktong/trading.git
+git clone https://github.com/cktong/crypto-backtest-engine.git
 
 # New  
 git clone https://github.com/cktong/crypto-backtest-engine.git
@@ -181,11 +181,11 @@ git clone https://github.com/cktong/crypto-backtest-engine.git
 ```bash
 # Find and replace in all files
 cd /home/user/webapp
-grep -r "cktong/trading" . --exclude-dir=.git
+grep -r "cktong/crypto-backtest-engine" . --exclude-dir=.git
 
 # Update them all
-find . -type f -name "*.sh" -exec sed -i 's|cktong/trading|cktong/crypto-backtest-engine|g' {} +
-find . -type f -name "*.md" -exec sed -i 's|cktong/trading|cktong/crypto-backtest-engine|g' {} +
+find . -type f -name "*.sh" -exec sed -i 's|cktong/crypto-backtest-engine|cktong/crypto-backtest-engine|g' {} +
+find . -type f -name "*.md" -exec sed -i 's|cktong/crypto-backtest-engine|cktong/crypto-backtest-engine|g' {} +
 ```
 
 ---
@@ -218,7 +218,7 @@ Update the clone command in deployment:
 
 **Before**:
 ```bash
-git clone https://github.com/cktong/trading.git
+git clone https://github.com/cktong/crypto-backtest-engine.git
 cd trading
 ```
 
@@ -235,7 +235,7 @@ If you have a Dockerfile:
 ```dockerfile
 FROM python:3.9
 WORKDIR /app
-RUN git clone https://github.com/cktong/trading.git
+RUN git clone https://github.com/cktong/crypto-backtest-engine.git
 ```
 
 **After**:
@@ -391,7 +391,7 @@ If you need help with the rename:
 4. Test clone from new URL
 5. Redeploy if needed
 
-**Current PR**: https://github.com/cktong/trading/pull/1
+**Current PR**: https://github.com/cktong/crypto-backtest-engine/pull/1
 **After Rename**: https://github.com/cktong/crypto-backtest-engine/pull/1 (automatic)
 
 Good luck! 🚀

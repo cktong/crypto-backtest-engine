@@ -203,11 +203,11 @@ metrics = bt.run_strategy('dual_momentum',
 ## 🔗 Important Links
 
 ### Repository
-- **Current**: https://github.com/cktong/trading
+- **Current**: https://github.com/cktong/crypto-backtest-engine
 - **Recommended**: https://github.com/cktong/crypto-backtest-engine
 
 ### Pull Request
-- https://github.com/cktong/trading/pull/1
+- https://github.com/cktong/crypto-backtest-engine/pull/1
 
 ### Documentation
 - `README.md` - Main documentation
